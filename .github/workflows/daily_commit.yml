@@ -1,8 +1,11 @@
 name: Daily Commit
 
 on:
+  push:
+    branches:
+      - main
   schedule:
-    - cron: '57 19 * * *'  
+    - cron: '35 19 * * *'  # Ejecuta todos los días a las 7:35 PM (UTC)
 
 jobs:
   commit:
@@ -18,5 +21,5 @@ jobs:
           git config --local user.name "Juancho2406"
           git config --local user.email "juansaavedra2406@gmail.com"
           git add commit_log.txt
-          git commit -m "Añadiendo un nuevo commit el $(date)"
+          git diff --cached --quiet || git commit -m "Añadiendo un nuevo commit el $(date)"
           git push origin main  # Cambia 'main' si tu rama principal es diferente
