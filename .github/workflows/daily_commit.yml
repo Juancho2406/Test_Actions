@@ -1,0 +1,22 @@
+name: Daily Commit
+
+on:
+  schedule:
+    - cron: '0 10 * * *'  # Ejecuta todos los días a las 10 AM
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Create a commit
+        run: |
+          echo "Commit realizado el $(date)" >> commit_log.txt
+          git config --local user.name "Juancho2406"
+          git config --local user.email "juansaavedra2406@gmail.com"
+          git add commit_log.txt
+          git commit -m "Añadiendo un nuevo commit el $(date)"
+          git push origin main  # Cambia 'main' si tu rama principal es diferente
