@@ -16,10 +16,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create a commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Usa el secreto que creaste
         run: |
           echo "Commit realizado el $(date)" >> commit_log.txt
           git config --local user.name "Juancho2406"
           git config --local user.email "juansaavedra2406@gmail.com"
           git add commit_log.txt
           git diff --cached --quiet || git commit -m "Añadiendo un nuevo commit el $(date)"
-          git push origin main  # Cambia 'main' si tu rama principal es diferente
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/Juancho2406/Test_Actions.git HEAD:main  # Cambia 'main' si tu rama principal es diferente
