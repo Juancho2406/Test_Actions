@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Actualiza a la versión 3
 
       - name: Create a commit
         env:
